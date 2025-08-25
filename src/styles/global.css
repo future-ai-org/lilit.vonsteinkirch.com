@@ -1,0 +1,807 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Dark theme colors */
+  --dark-primary: rgb(132, 117, 249);
+  --dark-background: rgb(14, 14, 14);
+  --dark-text: rgb(255, 255, 255);
+  --dark-border: rgba(132, 117, 249, 0.2);
+  --dark-glow-shadow: rgba(132, 117, 249, 0.3);
+  --dark-glow-shadow-hover: rgba(132, 117, 249, 0.5);
+  --dark-text-glow-normal: 0 0 10px rgba(132, 117, 249, 0.7);
+  --dark-text-glow-hover: 0 0 30px rgba(132, 117, 249, 0.7), 0 0 50px rgba(132, 117, 249, 0.5);
+}
+
+@layer components {
+  .values-page {
+    @apply min-h-screen bg-[rgb(14,14,14)] text-[rgb(132,117,249)] px-4 sm:px-6 pt-20 sm:pt-2 pb-20 sm:pb-6 flex items-center justify-center;
+  }
+
+  /* Waitlist page specific tweaks to reduce outer whitespace */
+  .waitlist-page {
+    @apply px-2 sm:px-3 pt-8 sm:pt-12 md:pt-16 pb-8 sm:pb-4 items-start;
+  }
+
+  .values-container {
+    @apply container mx-auto max-w-3xl px-2 sm:px-4;
+  }
+
+  /* Waitlist page specific container to allow wider layout */
+  .waitlist-container {
+    @apply container mx-auto max-w-2xl px-0 sm:px-2;
+  }
+
+  .values-title {
+    @apply text-3xl sm:text-5xl md:text-6xl font-bold text-center text-[rgb(255,220,150)] relative;
+  }
+
+  .values-title-text {
+    @apply relative z-10;
+  }
+
+  .values-title-glow {
+    @apply absolute inset-0 -z-10;
+  }
+
+  .values-card {
+    @apply bg-[rgb(20,20,20)] rounded-lg hover:bg-[rgb(25,25,25)] transition-all;
+  }
+
+  .values-card-title {
+    @apply subtitle font-semibold drop-shadow-[0_0_8px_rgba(132,117,249,0.5)] p-6 pb-2 !text-7xl;
+  }
+
+  .values-card-text {
+    @apply text-sm text-[rgb(132,117,249)]/80 leading-relaxed p-6 pt-0 font-bold;
+  }
+
+  .values-link {
+    @apply text-lg md:text-2xl px-4 md:px-6 py-2 md:py-3 text-[rgb(132,117,249)] hover:text-[rgb(132,117,249)] transition-all duration-300;
+  }
+
+  /* Navigation link container: top-right (Values link) */
+  .values-link-container {
+    @apply fixed z-40 top-6 md:top-8 right-6 md:right-8;
+  }
+
+  /* Navigation link container: top-left (Vision link) */
+  .vision-link-container {
+    @apply fixed z-40 top-6 md:top-8 left-6 md:left-8;
+  }
+
+  /* Navigation link container: bottom-left (StarTeam link) */
+  .starteam-link-container {
+    @apply hidden md:block fixed z-40 bottom-6 left-6;
+  }
+
+  /* Larger padding variant for prominent nav links */
+  .values-link-lg {
+    @apply px-8 py-4;
+  }
+
+  /* Common bold label for nav links */
+  .nav-link-label {
+    @apply font-bold;
+  }
+
+  .ceo-link {
+    @apply fixed bottom-5 right-5 md:bottom-8 md:right-8 text-base md:text-lg p-4 md:p-5 bg-black/20 backdrop-blur-md rounded-lg border border-[rgba(132,117,249,0.2)] transition-all duration-300 hover:scale-105 hover:border-[rgba(132,117,249,0.5)] hover:shadow-[0_0_30px_rgba(132,117,249,0.3)] z-50;
+  }
+
+  .ceo-link.group {
+    /* This class will be applied separately */
+  }
+
+  .ceo-link-text {
+    @apply no-underline font-medium transition-all duration-300 text-[rgb(132,117,249)] hover:text-[rgb(132,117,249)] text-lg md:text-2xl;
+  }
+
+  /* CEO link inner content and hover animations */
+  .ceo-link-content {
+    @apply flex flex-col items-center gap-2 md:gap-3;
+  }
+
+  .ceo-emoji {
+    @apply text-3xl md:text-5xl;
+  }
+
+  .ceo-label {
+    @apply font-bold;
+  }
+
+  .ceo-link.group:hover .ceo-emoji {
+    @apply animate-bounce;
+  }
+
+  .ceo-link.group:hover .ceo-label {
+    @apply animate-pulse;
+  }
+
+  .home-container {
+    @apply container;
+  }
+
+  .home-hero {
+    @apply mb-8 group;
+  }
+
+  .home-logo {
+    @apply transition-all duration-300 group-hover:brightness-110 neon-crystal;
+  }
+
+  .home-title {
+    @apply text-6xl md:text-8xl lg:text-[10rem] font-black mb-4 glow-text tracking-wider;
+  }
+
+  .home-subtitle {
+    @apply text-2xl md:text-4xl lg:text-5xl font-bold mb-4;
+  }
+
+  .waitlist-link {
+    @apply inline-block pt-1 sm:pt-1 text-xl sm:text-xl md:text-xl lg:text-2xl font-bold text-[rgb(255,220,150)] title-glow hover:text-[rgb(255,220,150)] transition-colors;
+  }
+
+  /* Home page specific waitlist link styling */
+  .home-waitlist-link {
+    @apply inline-block pt-1 sm:pt-1 text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[rgb(255,220,150)] title-glow hover:text-[rgb(255,220,150)] transition-colors;
+  }
+
+  /* Landing page specific classes extracted from src/app/page.tsx */
+  .home-hero-container {
+    @apply hero pt-8 md:pt-12;
+  }
+
+  /* Animated stars */
+  .stars-container {
+    @apply fixed inset-0 pointer-events-none overflow-hidden;
+  }
+
+  .animated-star {
+    @apply absolute;
+    color: rgb(253, 224, 71); /* Tailwind text-yellow-300 */
+    opacity: 0.7;
+    left: var(--left, 0);
+    top: var(--top, 0);
+    animation-delay: var(--delay, 0s);
+    font-size: var(--size, 16px);
+  }
+
+  .home-logo-group {
+    @apply mb-4 md:mb-8;
+  }
+
+  .home-logo-wrapper {
+    /* empty; transforms applied via hover selector below */
+  }
+
+  .home-logo-image {
+    @apply w-20 h-20 md:w-[120px] md:h-[120px] transition-all duration-300;
+    background-color: transparent;
+    filter: drop-shadow(0 0 20px rgba(132,117,249,0.3));
+  }
+
+  .home-title-text {
+    @apply text-4xl sm:text-6xl md:text-8xl lg:text-[10rem] font-black mb-2 md:mb-4 glow-text tracking-wider;
+  }
+
+  .home-subtitle-text {
+    @apply text-lg sm:text-xl md:text-3xl lg:text-4xl font-bold mb-2 md:mb-4 glow-text;
+  }
+
+  .home-tagline {
+    @apply subtitle text-base sm:text-lg md:text-xl lg:text-2xl;
+  }
+
+  .home-cta-container {
+    @apply mt-10 md:mt-12;
+  }
+
+  /* Vision page specific classes */
+  .vision-title {
+    @apply mb-6 md:mb-10 text-2xl sm:text-4xl md:text-5xl;
+  }
+
+  .vision-card {
+    @apply max-w-4xl mx-auto p-8 md:p-12;
+  }
+
+  .vision-card-text {
+    @apply text-center text-lg md:text-xl leading-relaxed;
+  }
+
+  .vision-cta-container {
+    @apply mt-12 text-center;
+  }
+
+  .vision-cta-link {
+    @apply text-xl md:text-2xl lg:text-3xl font-semibold text-[rgb(255,220,150)] transition-colors;
+    text-shadow: 0 0 5px rgba(255, 220, 150, 0.5);
+  }
+
+  .vision-cta-link:hover {
+    @apply text-[rgb(255,220,150)];
+  }
+
+  /* Values page specific classes */
+  .values-title-spacing {
+    @apply mb-16 md:mb-16;
+  }
+
+  .waitlist-title-spacing {
+    @apply mb-6 md:mb-8;
+  }
+
+  .values-sections {
+    @apply space-y-6;
+  }
+
+  .values-cta-container {
+    @apply mt-12 text-center;
+  }
+
+  /* Values page CTA link */
+  .values-cta-link {
+    @apply text-2xl md:text-3xl font-semibold text-[rgb(255,220,150)] transition-colors;
+  }
+
+  .values-cta-link:hover {
+    @apply text-[rgb(255,220,150)];
+  }
+
+  /* Careers page specific classes */
+  .careers-title {
+    @apply mb-16 md:mb-16 pt-8;
+  }
+
+  .careers-sections {
+    @apply space-y-8;
+  }
+
+  .careers-subtitle {
+    @apply mb-8 text-3xl sm:text-4xl text-left;
+  }
+
+  .careers-highlight-wrapper {
+    @apply relative inline-block;
+  }
+
+  .careers-highlight-link {
+    @apply text-[rgb(255,220,150)] title-glow relative z-10;
+  }
+
+  .careers-apply-section {
+    @apply mt-12;
+  }
+
+  .careers-compensation-text {
+    @apply mt-8;
+  }
+
+  .careers-list {
+    @apply list-disc ml-6 mt-4;
+  }
+
+  .waitlist-card {
+    @apply bg-[rgb(20,20,20)] rounded-lg hover:bg-[rgb(25,25,25)] transition-all max-w-5xl mx-auto p-1 sm:p-2 md:p-3;
+  }
+
+  .waitlist-card-inner {
+    @apply text-center space-y-0;
+  }
+
+  .waitlist-tabs {
+    @apply flex justify-center mb-0 relative overflow-x-auto;
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* IE and Edge */
+  }
+
+  .waitlist-tabs::-webkit-scrollbar {
+    display: none; /* Chrome, Safari and Opera */
+  }
+
+  .waitlist-content-box {
+    @apply bg-[rgb(18,18,18)] border-2 border-[rgb(132,117,249)] rounded-2xl p-3 sm:p-4 md:p-6 mb-4 sm:mb-6 shadow-[0_0_20px_rgba(132,117,249,0.1)] backdrop-blur-sm mt-0 max-w-4xl mx-auto transition-all duration-300;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+
+  .waitlist-content-box:focus-within {
+    @apply border-[rgb(132,117,249)] shadow-[0_0_20px_rgba(132,117,249,0.1)];
+  }
+
+  .waitlist-tab-panel {
+    @apply transition-all duration-300;
+  }
+
+  .waitlist-tab-panel.hidden {
+    display: none;
+  }
+
+  .waitlist-tab {
+    @apply px-3 sm:px-4 md:px-6 py-2 sm:py-3 bg-[rgb(25,25,25)] border-t-2 border-l-2 border-r-2 border-[rgba(132,117,249,0.4)] text-[rgb(132,117,249)] font-bold text-sm sm:text-base md:text-lg transition-all duration-300 cursor-pointer rounded-t-lg hover:bg-[rgb(30,30,30)] hover:border-[rgba(132,117,249,0.7)] mr-1 shadow-sm;
+  }
+
+  .waitlist-tab-active {
+    @apply border-t-[rgba(132,117,249,0.8)] border-l-[rgba(132,117,249,0.8)] border-r-[rgba(132,117,249,0.8)] text-[rgb(132,117,249)] bg-[rgb(18,18,18)] relative z-10;
+    margin-bottom: -2px;
+  }
+
+  /* Focus states for accessibility */
+  .waitlist-tab:focus {
+    @apply outline-none shadow-none ring-0;
+    border-bottom: none !important;
+    border-bottom-width: 0 !important;
+    border-bottom-style: none !important;
+    border-bottom-color: transparent !important;
+    background-color: rgb(18, 18, 18) !important;
+    margin-bottom: -2px !important;
+  }
+
+  .waitlist-tab:focus-visible {
+    @apply outline-none shadow-none ring-0;
+    border-bottom: none !important;
+    border-bottom-width: 0 !important;
+    border-bottom-style: none !important;
+    border-bottom-color: transparent !important;
+    background-color: rgb(18, 18, 18) !important;
+    margin-bottom: -2px !important;
+  }
+
+  .waitlist-tab[data-chain="cardano"]:focus-visible {
+    @apply outline-none shadow-none ring-0;
+    border-bottom: none !important;
+    border-bottom-width: 0 !important;
+    border-bottom-style: none !important;
+    border-bottom-color: transparent !important;
+    background-color: rgb(18, 18, 18) !important;
+    margin-bottom: -2px !important;
+  }
+
+  /* Bitcoin tab specific styling */
+  .waitlist-tab[data-chain="bitcoin"] {
+    @apply border-[rgba(255,153,0,0.4)] text-[rgb(255,153,0)];
+  }
+
+  .waitlist-tab[data-chain="bitcoin"]:hover {
+    @apply border-[rgba(255,153,0,0.7)] bg-[rgb(30,30,30)];
+  }
+
+  .waitlist-tab[data-chain="bitcoin"].waitlist-tab-active {
+    @apply border-t-[rgba(255,153,0,0.8)] border-l-[rgba(255,153,0,0.8)] border-r-[rgba(255,153,0,0.8)] text-[rgb(255,153,0)] bg-[rgb(18,18,18)] relative z-10;
+    margin-bottom: -2px;
+  }
+
+  .waitlist-tab[data-chain="bitcoin"]:focus {
+    @apply outline-none shadow-none ring-0;
+    border-bottom: none !important;
+    border-bottom-width: 0 !important;
+    border-bottom-style: none !important;
+    border-bottom-color: transparent !important;
+    background-color: rgb(18, 18, 18) !important;
+    margin-bottom: -2px !important;
+  }
+
+  .waitlist-tab[data-chain="bitcoin"]:focus-visible {
+    @apply outline-none shadow-none ring-0;
+    border-bottom: none !important;
+    border-bottom-width: 0 !important;
+    border-bottom-style: none !important;
+    border-bottom-color: transparent !important;
+    background-color: rgb(18, 18, 18) !important;
+    margin-bottom: -2px !important;
+  }
+
+  .waitlist-cardano-note {
+    @apply text-xs text-[rgb(132,117,249)]/60 mt-2 italic;
+  }
+
+  .waitlist-description {
+    @apply text-sm sm:text-base md:text-lg text-[rgb(132,117,249)]/80 leading-relaxed font-bold pb-2 md:pb-3;
+  }
+
+  .waitlist-grid {
+    @apply mt-3 sm:mt-4 grid gap-2 sm:gap-3; 
+  }
+
+  .waitlist-section {
+    @apply flex flex-col items-center px-2 sm:px-0;
+  }
+
+  .waitlist-label {
+    @apply text-xs sm:text-sm font-semibold text-[rgb(255,220,150)];
+  }
+
+  .waitlist-recipient-row {
+    @apply mt-2 flex flex-col sm:flex-row items-center gap-2 sm:gap-3;
+  }
+
+  .waitlist-code {
+    @apply px-2 sm:px-3 py-2 rounded bg-[rgb(20,20,20)] border border-[rgba(132,117,249,0.2)] text-[rgb(132,117,249)] break-all text-xs max-w-full w-full;
+  }
+
+  .waitlist-copy-button {
+    @apply px-2 sm:px-3 py-2 rounded-md bg-[rgb(255,220,150)]/10 border border-[rgba(255,220,150,0.4)] text-[rgb(255,220,150)] font-semibold hover:bg-[rgb(255,220,150)]/15 transition-colors text-xs sm:text-sm;
+  }
+
+  .waitlist-amount-value {
+    @apply px-3 py-2 rounded bg-[rgb(20,20,20)] border border-[rgba(132,117,249,0.2)] text-[rgb(255,220,150)] font-semibold;
+  }
+
+  .waitlist-amount-row {
+    @apply mt-2;
+  }
+
+  .waitlist-amount-options {
+    @apply mt-2 flex flex-wrap items-center justify-center gap-1 sm:gap-2;
+  }
+
+  .waitlist-amount-button {
+    @apply px-2 sm:px-3 py-2 rounded-md bg-[rgb(20,20,20)] border border-[rgba(132,117,249,0.2)] text-[rgb(132,117,249)] font-semibold transition-colors text-xs sm:text-sm;
+  }
+
+  .waitlist-amount-button:hover {
+    background-color: rgb(20, 20, 20) !important;
+  }
+
+  .waitlist-amount-button-selected {
+    @apply border-[rgba(255,220,150,0.6)] text-[rgb(255,220,150)] shadow-[0_0_15px_rgba(255,220,150,0.25)];
+  }
+
+  .waitlist-qr-section {
+    @apply flex flex-col items-center pt-2;
+  }
+
+  .waitlist-qr-label {
+    @apply text-xs sm:text-sm font-semibold text-[rgb(255,220,150)] mb-2;
+  }
+
+  .waitlist-qr-image {
+    @apply w-32 h-32 sm:w-40 sm:h-40 rounded bg-white p-2;
+  }
+
+  .waitlist-back-link-container {
+    @apply pt-2;
+  }
+
+  .highlight-accent {
+    @apply text-[rgb(255,220,150)] font-semibold;
+  }
+
+  .inline-gap-left {
+    @apply ml-2;
+  }
+
+  /* Inline variant of the values title effect for short phrases inside paragraphs */
+  .inline-title-wrapper {
+    @apply relative inline-block align-baseline text-[rgb(255,220,150)] font-semibold title-glow;
+  }
+
+  .inline-title-text {
+    @apply relative z-10;
+  }
+}
+
+@layer utilities {
+  .glow-link {
+    text-shadow: var(--dark-text-glow-normal);
+  }
+
+  .glow-link-hover {
+    text-shadow: var(--dark-text-glow-hover);
+  }
+
+  /* Prefer CSS :hover over JS event handlers to toggle glow */
+  .glow-link:hover {
+    text-shadow: var(--dark-text-glow-hover);
+  }
+
+  .title-glow {
+    text-shadow: 0 0 5px rgba(255, 220, 150, 0.5);
+  }
+
+  .title-bg {
+    background: radial-gradient(circle at center, rgba(255, 220, 150, 0.05) 0%, transparent 50%);
+    transform: scale(1.2);
+  }
+
+  .logo-glow {
+    filter: drop-shadow(0 0 20px rgba(132,117,249,0.3));
+  }
+
+  /* Hover effects for landing page */
+  .home-logo-group:hover .home-logo-wrapper {
+    transform: scale(1.03);
+    transition: transform 300ms ease-in-out;
+  }
+
+  .home-logo-group:hover .home-logo-image {
+    filter: brightness(1.1) drop-shadow(0 0 20px rgba(132,117,249,0.3));
+  }
+
+  .visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+    border: 0;
+    padding: 0;
+    margin: -1px;
+  }
+
+  .overlay-fill {
+    @apply absolute inset-0;
+  }
+}
+
+html {
+  background-color: var(--dark-background);
+  color: var(--dark-primary);
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen,
+    Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+}
+
+.glow-text {
+  text-shadow: var(--dark-text-glow-normal);
+  transition: text-shadow 0.3s ease;
+}
+
+.glow-text:hover {
+  text-shadow: var(--dark-text-glow-hover);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1rem;
+}
+
+.hero {
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding-top: 1rem;
+}
+
+.title {
+  font-size: 5.2rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+}
+
+.subtitle {
+  font-size: 1.2rem;
+  opacity: 0.8;
+  margin: 0 auto;
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    #8A2BE2,  /* Deep purple */
+    #9370DB,  /* Medium purple */
+    #BA55D3,  /* Medium orchid */
+    #DA70D6,  /* Orchid */
+    #EE82EE,  /* Violet */
+    #DDA0DD,  /* Plum */
+    #E6E6FA   /* Lavender */
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow 8s linear infinite;
+  background-size: 200% auto;
+}
+
+@keyframes rainbow {
+  0% {
+    background-position: 0% center;
+  }
+  100% {
+    background-position: 200% center;
+  }
+}
+
+.rainbow-text {
+  font-weight: bold;
+  background: linear-gradient(
+    to right,
+    #8A2BE2,  /* Deep purple */
+    #9370DB,  /* Medium purple */
+    #BA55D3,  /* Medium orchid */
+    #DA70D6,  /* Orchid */
+    #EE82EE,  /* Violet */
+    #DDA0DD,  /* Plum */
+    #E6E6FA   /* Lavender */
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: rainbow 8s linear infinite;
+  background-size: 200% auto;
+}
+
+/* Larger size variant for rainbow text when extra emphasis is desired */
+.rainbow-text-big {
+  font-size: 1.5em;
+}
+
+@keyframes neonPulse {
+  0% {
+    filter: drop-shadow(0 0 30px rgba(132,117,249,0.4)) 
+            drop-shadow(0 0 50px rgba(132,117,249,0.3))
+            drop-shadow(0 0 70px rgba(132,117,249,0.2));
+  }
+  50% {
+    filter: drop-shadow(0 0 50px rgba(132,117,249,0.6))
+            drop-shadow(0 0 70px rgba(132,117,249,0.4))
+            drop-shadow(0 0 90px rgba(132,117,249,0.3));
+  }
+  100% {
+    filter: drop-shadow(0 0 30px rgba(132,117,249,0.4))
+            drop-shadow(0 0 50px rgba(132,117,249,0.3))
+            drop-shadow(0 0 70px rgba(132,117,249,0.2));
+  }
+}
+
+@keyframes neonRays {
+  0% {
+    transform: rotate(0deg) scale(1.2);
+  }
+  50% {
+    transform: rotate(180deg) scale(1.4);
+  }
+  100% {
+    transform: rotate(360deg) scale(1.2);
+  }
+}
+
+.neon-crystal {
+  position: relative;
+  animation: neonPulse 4s ease-in-out infinite;
+}
+
+.neon-crystal::before {
+  content: '';
+  position: absolute;
+  top: -100%;
+  left: -100%;
+  width: 300%;
+  height: 300%;
+  background: radial-gradient(
+    circle at center,
+    rgba(132,117,249,0.15) 0%,
+    rgba(132,117,249,0.1) 30%,
+    transparent 70%
+  );
+  animation: neonRays 15s linear infinite;
+  pointer-events: none;
+  z-index: -1;
+}
+
+.neon-crystal::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(
+    circle at center,
+    rgba(132,117,249,0.2) 0%,
+    transparent 60%
+  );
+  animation: neonRays 10s linear infinite reverse;
+  pointer-events: none;
+  z-index: -1;
+}
+
+@keyframes neonTitlePulse {
+  0% {
+    text-shadow: 
+      0 0 10px rgba(255, 220, 150, 0.7),
+      0 0 20px rgba(255, 220, 150, 0.5),
+      0 0 30px rgba(255, 220, 150, 0.3);
+  }
+  50% {
+    text-shadow: 
+      0 0 20px rgba(255, 220, 150, 0.9),
+      0 0 40px rgba(255, 220, 150, 0.7),
+      0 0 60px rgba(255, 220, 150, 0.5),
+      0 0 80px rgba(255, 220, 150, 0.3);
+  }
+  100% {
+    text-shadow: 
+      0 0 10px rgba(255, 220, 150, 0.7),
+      0 0 20px rgba(255, 220, 150, 0.5),
+      0 0 30px rgba(255, 220, 150, 0.3);
+  }
+}
+
+@keyframes starFloat {
+  0% {
+    transform: translate(0, 0) rotate(0deg);
+    opacity: 0;
+  }
+  20% {
+    opacity: 1;
+  }
+  80% {
+    opacity: 1;
+  }
+  100% {
+    transform: translate(100px, -100px) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+.animate-star {
+  animation: starFloat 8s linear infinite;
+}
+
+@keyframes tabGlow {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(132, 117, 249, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(132, 117, 249, 0.6), 0 0 60px rgba(132, 117, 249, 0.3);
+  }
+}
+
+@keyframes ethereumPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(88, 101, 242, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(88, 101, 242, 0.6), 0 0 60px rgba(88, 101, 242, 0.3);
+  }
+}
+
+@keyframes cardanoPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(0, 157, 255, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(0, 157, 255, 0.6), 0 0 60px rgba(0, 157, 255, 0.3);
+  }
+} 
+
+@keyframes bitcoinPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(255, 153, 0, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 40px rgba(255, 153, 0, 0.6), 0 0 60px rgba(255, 153, 0, 0.3);
+  }
+} 
+
+.lo-snura-se-djica-fancu {
+  position: fixed;
+  bottom: 8px;
+  right: 8px;
+  opacity: 0.3;
+  transition: opacity 0.3s ease;
+  pointer-events: none;
+  z-index: 100;
+}
+
+.lo-snura-se-djica-fancu:hover {
+  opacity: 0.8;
+}
+
+.lo-snura-se-djica-fancu-text {
+  font-size: 12px;
+  color: rgba(132, 117, 249, 0.6);
+  font-family: monospace;
+  user-select: none;
+  text-shadow: 0 0 5px rgba(132, 117, 249, 0.3);
+} 
