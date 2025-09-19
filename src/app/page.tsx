@@ -27,7 +27,7 @@ export default function Home() {
             />
           </div>
         </div>
-        <h1 className="home-title-text"><a href="https://youtube.com/playlist?list=PLwz2N11mD_-FK1NmVx3ZCvYZqV0IraEMz&si=SMHuqFLTk4Hfl9OX" target="_blank">LILIT</h1>
+        <h1 className="home-title-text">LILIT</h1>
         <h2 className="home-subtitle-text">coming privately to shake your world like never before</h2>
         <p className="home-tagline">
           (we&apos;re building a new type of prediction platform, and it&apos;s absolutely awesome)
