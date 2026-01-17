@@ -1,4 +1,4 @@
-## LILIT.ai private launch
+## lilit.vonsteinkirch.com (experiment)
 
 <br>
 

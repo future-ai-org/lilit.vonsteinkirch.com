@@ -4,7 +4,7 @@ export default function CEOLink() {
   return (
     <div className="ceo-link group">
       <a 
-        href="https://www.vonsteinkirch.com" 
+        href="https://marina.vonsteinkirch.com"
         target="_blank" 
         rel="noopener noreferrer" 
         className="ceo-link-text glow-link"

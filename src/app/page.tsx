@@ -2,7 +2,6 @@
 
 import React, { useEffect } from 'react';
 import Image from 'next/image';
-import Link from 'next/link';
 import '../styles/global.css';
 import AnimatedStars from './components/AnimatedStars';
 
@@ -32,14 +31,6 @@ export default function Home() {
         <p className="home-tagline">
           (we&apos;re building a new type of prediction platform, and it&apos;s absolutely awesome)
         </p>
-        <div className="home-cta-container">
-          <Link
-            href="/waitlist"
-            className="home-waitlist-link"
-          >
-            become one of our first private members  →
-          </Link>
-        </div>
       </div>
 
     </main>
